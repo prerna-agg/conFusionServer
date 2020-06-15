@@ -94,7 +94,7 @@ favoriteRouter
 		}
 	)
 	.delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
-		Favorites.remove({})
+		Favorites.findOneAndRemove({ user: req.user._id })
 			.then(
 				(resp) => {
 					res.statusCode = 200;
